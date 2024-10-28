@@ -11,16 +11,16 @@ Study code formatting patterns so that the team can use them to maintain consist
 ### Resources
 
 #### References
-[1] https://github.com/psf/black
-[2] https://black.readthedocs.io/en/stable/usage_and_configuration/the_basics.html
-[3] https://www.sonarsource.com/learn/linter/
-[4] https://pypi.org/project/pylint/
-[5] https://www.pylint.org/
-[6] https://pylint.readthedocs.io/en/stable/
-[7] https://flake8.pycqa.org/en/latest/
-[8] https://pypi.org/project/flake8/
-[9] https://github.com/resources/articles/devops/ci-cd
-[10] https://www.redhat.com/en/topics/devops/what-is-ci-cd
+1. https://github.com/psf/black
+2. https://black.readthedocs.io/en/stable/usage_and_configuration/the_basics.html
+3. https://www.sonarsource.com/learn/linter/
+4. https://pypi.org/project/pylint/
+5. https://www.pylint.org/
+6. https://pylint.readthedocs.io/en/stable/
+7. https://flake8.pycqa.org/en/latest/
+8. https://pypi.org/project/flake8/
+9. https://github.com/resources/articles/devops/ci-cd
+10. https://www.redhat.com/en/topics/devops/what-is-ci-cd
 
 
 ### Milestones
