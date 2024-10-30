@@ -16,4 +16,4 @@ jobs:
         uses: psf/black@stable
         with:
           options: "--check --verbose"
-          src: "./format-cicd"  # Ensure this path is correct
+          src: "./scripts"  # Update the path to your scripts directory
