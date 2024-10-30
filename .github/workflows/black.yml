@@ -9,8 +9,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: List directory contents
+        run: ls -R
+
       - name: Run Black
         uses: psf/black@stable
         with:
           options: "--check --verbose"
-          src: "./format-cicd"
+          src: "./format-cicd"  # Ensure this path is correct
