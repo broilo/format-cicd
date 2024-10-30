@@ -16,4 +16,10 @@ jobs:
         uses: psf/black@stable
         with:
           options: "--check --verbose"
-          src: "./scripts"  # Update the path to your scripts directory
+          src: "./scripts" # Update the path to your scripts directory
+
+      - name: Format code with Black
+        if: failure()  # Only run this step if the previous Black step fails
+        uses: psf/black@stable
+        with:
+          src: "./scripts"  # Automatically format code
