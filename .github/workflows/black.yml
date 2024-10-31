@@ -42,11 +42,11 @@ jobs:
         run: |
           SQL_SRC="./scripts"
           echo "Linting SQL files in $SQL_SRC"
-          sqlfluff lint $SQL_SRC/**/*.sql --dialect bigquery  # Adjust the path and dialect as needed
+          sqlfluff lint $SQL_SRC/*.sql --dialect bigquery  # Adjust the path and dialect as needed
 
       - name: Fix SQL files with SQLFluff
         if: failure()  # Only run this step if the previous SQLFluff lint step fails
         run: |
           SQL_SRC="./scripts"
           echo "Fixing SQL files in $SQL_SRC"
-          sqlfluff fix $SQL_SRC/**/*.sql --dialect bigquery  # Automatically fix SQL formatting
+          sqlfluff fix $SQL_SRC/*.sql --dialect bigquery  # Automatically fix SQL formatting
