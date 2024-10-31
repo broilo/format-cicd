@@ -27,9 +27,9 @@ jobs:
           sqlfluff --version  # Check if sqlfluff is accessible
 
       - name: Run PyLint
-          run: |
-            PYLINT_SRC="./scripts"
-            pylint $PYLINT_SRC/*.py # Adjust the path to your Python files as needed
+        run: |
+          PYLINT_SRC="./scripts"
+          pylint $PYLINT_SRC/*.py # Adjust the path to your Python files as needed
 
       - name: Run Black
         uses: psf/black@stable
