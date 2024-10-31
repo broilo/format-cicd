@@ -19,12 +19,17 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install sqlfluff black pylint
+          pip install sqlfluff black pylint autopep8
   
       - name: Check SQLFluff installation
         run: |
           pip show sqlfluff
           sqlfluff --version  # Check if sqlfluff is accessible
+
+      - name: Run PyLint
+        run: |
+          AUTOPEP8_SRC="./scripts"
+          autopep8 --in-place --recursive $AUTOPEP8_SRC/*.py  # Format all Python files
 
       - name: Run PyLint
         run: |
