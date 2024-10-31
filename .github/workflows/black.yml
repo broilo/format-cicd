@@ -23,3 +23,10 @@ jobs:
         uses: psf/black@stable
         with:
           src: "./scripts"  # Automatically format code
+
+      - name: Lint SQL files with SQLFluff
+        run: sqlfluff lint ./sql/**/*.sql --dialect bigquery  # Adjust the path and dialect as needed
+
+      - name: Fix SQL files with SQLFluff
+        if: failure()  # Only run this step if the previous SQLFluff lint step fails
+        run: sqlfluff fix ./sql/**/*.sql --dialect bigquery  # Automatically fix SQL formatting
