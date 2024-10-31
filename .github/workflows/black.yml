@@ -12,11 +12,20 @@ jobs:
       - name: List directory contents
         run: ls -R
 
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'  # Specify the Python version
+
+      - name: Install dependencies
+        run: |
+          pip install sqlfluff psf/black
+
       - name: Run Black
         uses: psf/black@stable
         with:
           options: "--check --verbose"
-          src: "./scripts" # Update the path to your scripts directory
+          src: "./scripts"  # Update the path to your scripts directory
 
       - name: Format code with Black
         if: failure()  # Only run this step if the previous Black step fails
@@ -25,8 +34,12 @@ jobs:
           src: "./scripts"  # Automatically format code
 
       - name: Lint SQL files with SQLFluff
-        run: sqlfluff lint ./sql/**/*.sql --dialect bigquery  # Adjust the path and dialect as needed
+        run: |
+          SQL_SRC="./scripts/**/*.sql"
+          sqlfluff lint $SQL_SRC --dialect bigquery  # Adjust the path and dialect as needed
 
       - name: Fix SQL files with SQLFluff
         if: failure()  # Only run this step if the previous SQLFluff lint step fails
-        run: sqlfluff fix ./sql/**/*.sql --dialect bigquery  # Automatically fix SQL formatting
+        run: |
+          SQL_SRC="./scripts/**/*.sql"
+          sqlfluff fix $SQL_SRC --dialect bigquery  # Automatically fix SQL formatting
