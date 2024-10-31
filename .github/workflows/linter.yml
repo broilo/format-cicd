@@ -19,12 +19,17 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install sqlfluff black
+          pip install sqlfluff black pylint
   
       - name: Check SQLFluff installation
         run: |
           pip show sqlfluff
           sqlfluff --version  # Check if sqlfluff is accessible
+
+      - name: Run PyLint
+          run: |
+            PYLINT_SRC="./scripts"
+            pylint $PYLINT_SRC/*.py # Adjust the path to your Python files as needed
 
       - name: Run Black
         uses: psf/black@stable
