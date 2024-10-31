@@ -1,0 +1,52 @@
+name: Lint
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: List directory contents
+        run: ls -R
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'  # Specify the Python version
+
+      - name: Install dependencies
+        run: |
+          pip install sqlfluff black
+  
+      - name: Check SQLFluff installation
+        run: |
+          pip show sqlfluff
+          sqlfluff --version  # Check if sqlfluff is accessible
+
+      - name: Run Black
+        uses: psf/black@stable
+        with:
+          options: "--check --verbose"
+          src: "./scripts"  # Update the path to your scripts directory
+
+      - name: Format code with Black
+        if: failure()  # Only run this step if the previous Black step fails
+        uses: psf/black@stable
+        with:
+          src: "./scripts"  # Automatically format code
+
+      - name: Lint SQL files with SQLFluff
+        run: |
+          SQL_SRC="./scripts"
+          echo "Linting SQL files in $SQL_SRC"
+          sqlfluff lint $SQL_SRC/*.sql --dialect bigquery  # Adjust the path and dialect as needed
+
+      - name: Fix SQL files with SQLFluff
+        if: failure()  # Only run this step if the previous SQLFluff lint step fails
+        run: |
+          SQL_SRC="./scripts"
+          echo "Fixing SQL files in $SQL_SRC"
+          sqlfluff fix $SQL_SRC/*.sql --dialect bigquery  # Automatically fix SQL formatting

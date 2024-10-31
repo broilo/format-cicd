@@ -23,7 +23,13 @@ Study code formatting patterns so that the team can use them to maintain consist
 8. https://pypi.org/project/flake8/
 9. https://github.com/resources/articles/devops/ci-cd
 10. https://www.redhat.com/en/topics/devops/what-is-ci-cd
+11. https://sqlfluff.com/
 
+__Obs: SQL-Fluff__:
+```
+$ sqlfluff lint <script.sql> --dialect bigquery
+$ sqlfluff fix <script.sql> --dialect bigquery
+```
 
 ### Milestones
 
