@@ -28,14 +28,13 @@ jobs:
 
       - name: Format code with Autopep8
         run: |
-          shopt -s globstar  # Enable ** for recursive globbing
           AUTOPEP8_SRC="./scripts"
-          autopep8 --in-place --recursive $AUTOPEP8_SRC/**/*.py  # Format all Python files
+          find $AUTOPEP8_SRC -name "*.py" -exec autopep8 --in-place {} +  # Format all Python files
 
       - name: Run PyLint
         run: |
           PYLINT_SRC="./scripts"
-          pylint $PYLINT_SRC/*.py # Adjust the path to your Python files as needed
+          find $PYLINT_SRC -name "*.py" -exec pylint {} +  # Lint all Python files
 
       - name: Run Black
         uses: psf/black@stable
@@ -53,11 +52,11 @@ jobs:
         run: |
           SQL_SRC="./scripts"
           echo "Linting SQL files in $SQL_SRC"
-          sqlfluff lint $SQL_SRC/*.sql --dialect bigquery  # Adjust the path and dialect as needed
+          find $SQL_SRC -name "*.sql" -exec sqlfluff lint {} --dialect bigquery +  # Lint SQL files
 
       - name: Fix SQL files with SQLFluff
         if: failure()  # Only run this step if the previous SQLFluff lint step fails
         run: |
           SQL_SRC="./scripts"
           echo "Fixing SQL files in $SQL_SRC"
-          sqlfluff fix $SQL_SRC/*.sql --dialect bigquery  # Automatically fix SQL formatting
+          find $SQL_SRC -name "*.sql" -exec sqlfluff fix {} --dialect bigquery +  # Automatically fix SQL formatting
