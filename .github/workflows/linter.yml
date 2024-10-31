@@ -28,6 +28,7 @@ jobs:
 
       - name: Format code with Autopep8
         run: |
+          shopt -s globstar  # Enable ** for recursive globbing
           AUTOPEP8_SRC="./scripts"
           autopep8 --in-place --recursive $AUTOPEP8_SRC/**/*.py  # Format all Python files
 
