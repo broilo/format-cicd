@@ -38,6 +38,9 @@ jobs:
         with:
           src: "./scripts"  # Automatically format code
 
+      - name: List SQL files
+        run: ls ./scripts/**/*.sql  # This will show the matching SQL files
+
       - name: Lint SQL files with SQLFluff
         run: |
           SQL_SRC="./scripts/**/*.sql"
