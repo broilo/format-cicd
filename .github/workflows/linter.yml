@@ -26,10 +26,10 @@ jobs:
           pip show sqlfluff
           sqlfluff --version  # Check if sqlfluff is accessible
 
-      - name: Run PyLint
+      - name: Format code with Autopep8
         run: |
           AUTOPEP8_SRC="./scripts"
-          autopep8 --in-place --recursive $AUTOPEP8_SRC/*.py  # Format all Python files
+          autopep8 --in-place --recursive $AUTOPEP8_SRC/**/*.py  # Format all Python files
 
       - name: Run PyLint
         run: |
