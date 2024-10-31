@@ -1,6 +1,7 @@
 # format-cicd
 
 [![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Code Style](https://img.shields.io/badge/linting-pylint-yellowgreen)](https://pylint.readthedocs.io/en/stable/)
 
 ## Code formatting patterns and Integration/Development tools
 __Growth period ending on Jan 31, 2025 • Last updated 13 minutes ago__
